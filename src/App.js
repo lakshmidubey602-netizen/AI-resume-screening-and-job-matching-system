@@ -257,6 +257,80 @@ function HRForm({ onBack }) {
   );
 }
 
+function TestimonialSection() {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const testimonial = {
+    name: "Aliche Nickolas",
+    role: "Marketing Manager at D&G",
+    text: "Moving to a new place is scary, but using Job Matching to find a job within one week of moving in has been such a blessing to me and my family!"
+  };
+
+  const imageUrl = "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80"; // professional woman with laptop, confident smile, soft yellow/white bg
+
+  const onPrev = () => setSlideIndex((prev) => Math.max(prev - 1, 0));
+  const onNext = () => setSlideIndex((prev) => prev + 1);
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:py-20">
+      <div className="rounded-3xl bg-gradient-to-br from-indigo-50 via-sky-50 to-rose-50 p-6 shadow-xl border border-white/50">
+        <div className="grid items-center gap-8 md:grid-cols-2">
+          <div>
+            <p className="text-sm uppercase tracking-widest text-slate-500">Testimonial</p>
+            <h3 className="mt-2 text-3xl font-bold leading-tight text-slate-900">{testimonial.name}</h3>
+            <p className="text-sm text-slate-500">{testimonial.role}</p>
+            <p className="mt-6 text-2xl font-medium leading-snug text-slate-800" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+              “{testimonial.text}”
+            </p>
+
+            <div className="mt-10 inline-flex items-center gap-3">
+              <button
+                onClick={onPrev}
+                aria-label="Previous testimonial"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                onClick={onNext}
+                aria-label="Next testimonial"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+              <span className="text-sm text-slate-500">{slideIndex + 1} / 3</span>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg" style={{ aspectRatio: '16 / 9' }}>
+            <img
+              src={imageUrl}
+              alt="Professional smiling young woman holding laptop"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                aria-label="Play testimonial"
+                className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/85 text-slate-900 shadow-xl transition hover:scale-105"
+              >
+                <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState("landing"); // "landing", "student", "hr", "login"
   const [tab, setTab] = useState("jobs");
@@ -476,6 +550,7 @@ function App() {
             </div>
           </div>
         </section>
+        <TestimonialSection />
       </main>
     </div>
   );
